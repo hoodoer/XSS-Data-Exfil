@@ -1,7 +1,9 @@
 # XSS-Data-Exfil
 Sample code for exfiltrating data through an XSS vulnerability. XSS Payload retrieves sensitive data in victim's browser, then breaks it into chunks. Sends those chunks out as image requests (data in image filename). Example commands and python script to put the original data back together. 
 
-Will link to blog post once it's posted. 
+Blog post with screenshots and walkthrough here:
+https://www.trustedsec.com/blog/simple-data-exfiltration-through-xss/
+
 
 Basically you tailor the exfilPayload.js file to grab the sensitive data your victim has access to. 
 
